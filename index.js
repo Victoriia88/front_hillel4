@@ -1,14 +1,15 @@
-let lengtsOfArray = parseInt(prompt("Введіть, будь ласка, довжину масиву?"));
-let array = [];
+function generateKey(length, characters) {
+  let result = "";
+  const charactersLength = characters.length;
 
-for (i = 0; i < lengtsOfArray; i++) {
-  let elementArray = prompt("Введіть елемент масиву:");
-  array.push(elementArray);
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * charactersLength);
+    result += characters[randomIndex];
+  }
+
+  return result;
 }
-console.log(`Масив до сортування: ${array}`);
 
-array.sort();
-console.log(`Відсортований масив: ${array}`);
-
-array.splice(1, 3);
-console.log(`Масив з видаленими елементами: ${array}`);
+const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+const key = generateKey(16, characters);
+console.log(key);
