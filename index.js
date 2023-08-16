@@ -1,57 +1,35 @@
-class Human {
-  constructor(name, age) {
-    this.name = name;
-    this.age = age;
+class Hamburger {
+  constructor(size, stuffing) {
+    this.size = size;
+    this.stuffing = stuffing;
+    this.toppings = [];
   }
 
-  getInfo() {
-    console.log(`Name: ${this.name}, Age: ${this.age}`);
+  static SIZE_SMALL = { price: 50, calories: 20 };
+  static SIZE_LARGE = { price: 100, calories: 40 };
+  static STUFFING_CHEESE = { price: 10, calories: 20 };
+  static STUFFING_SALAD = { price: 20, calories: 5 };
+  static STUFFING_POTATO = { price: 15, calories: 10 };
+  static TOPPING_MAYO = { price: 20, calories: 5 };
+  static TOPPING_SAUCE = { price: 15, calories: 0 };
+
+  addTopping(topping) {
+    this.toppings.push(topping);
+  }
+
+  calculatePrice() {
+    let totalPrice = this.size.price + this.stuffing.price;
+    for (const topping of this.toppings) {
+      totalPrice += topping.price;
+    }
+    return totalPrice;
+  }
+
+  calculateCalories() {
+    let totalCalories = this.size.calories + this.stuffing.calories;
+    for (const topping of this.toppings) {
+      totalCalories += topping.calories;
+    }
+    return totalCalories;
   }
 }
-
-class Car {
-  constructor(brand, model, year, licensePlate) {
-    this.brand = brand;
-    this.model = model;
-    this.year = year;
-    this.licensePlate = licensePlate;
-    this.owner = null;
-  }
-
-  assignOwner(owner) {
-    if (owner.age > 18) {
-      this.owner = owner;
-    } else {
-      console.log(`The owner must be at least 18 years old.`);
-    }
-  }
-
-  getInfo() {
-    console.log(
-      `Brand: ${this.brand}, Model: ${this.model}, Year: ${this.year}, License Plate: ${this.licensePlate}`
-    );
-    if (this.owner) {
-      console.log(`Owner Info:`);
-      this.owner.getInfo();
-    } else {
-      console.log(`Owner: Not Assigned`);
-    }
-  }
-}
-
-// Демонстрація:
-const person1 = new Human("Ivan", 45);
-const person2 = new Human("Olya", 23);
-const person3 = new Human("Igor", 14);
-
-const car1 = new Car("Toyota", "Camry", 2012, "ABC777");
-const car2 = new Car("Opel", "Astra", 2004, "DFG999");
-const car3 = new Car("BMW", "X5", 2015, "HIK123");
-
-car1.assignOwner(person1);
-car2.assignOwner(person2);
-car3.assignOwner(person3); // Має вивести повідомлення, оскільки власнику менше 18 років
-
-car1.getInfo();
-car2.getInfo();
-car3.getInfo();
