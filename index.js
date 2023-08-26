@@ -1,35 +1,37 @@
-class Hamburger {
-  constructor(size, stuffing) {
-    this.size = size;
-    this.stuffing = stuffing;
-    this.toppings = [];
+const images = ["images/image1.jpg", "images/image2.jpg", "images/image3.jpg"];
+
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const sliderImage = document.getElementById("sliderImage");
+
+let currentIndex = 0;
+
+function updateImage() {
+  sliderImage.src = images[currentIndex];
+  if (currentIndex === 0) {
+    prevBtn.style.visibility = "hidden";
+  } else {
+    prevBtn.style.visibility = "visible";
   }
-
-  static SIZE_SMALL = { price: 50, calories: 20 };
-  static SIZE_LARGE = { price: 100, calories: 40 };
-  static STUFFING_CHEESE = { price: 10, calories: 20 };
-  static STUFFING_SALAD = { price: 20, calories: 5 };
-  static STUFFING_POTATO = { price: 15, calories: 10 };
-  static TOPPING_MAYO = { price: 20, calories: 5 };
-  static TOPPING_SAUCE = { price: 15, calories: 0 };
-
-  addTopping(topping) {
-    this.toppings.push(topping);
-  }
-
-  calculatePrice() {
-    let totalPrice = this.size.price + this.stuffing.price;
-    for (const topping of this.toppings) {
-      totalPrice += topping.price;
-    }
-    return totalPrice;
-  }
-
-  calculateCalories() {
-    let totalCalories = this.size.calories + this.stuffing.calories;
-    for (const topping of this.toppings) {
-      totalCalories += topping.calories;
-    }
-    return totalCalories;
+  if (currentIndex === images.length - 1) {
+    nextBtn.style.visibility = "hidden";
+  } else {
+    nextBtn.style.visibility = "visible";
   }
 }
+
+prevBtn.addEventListener("click", () => {
+  if (currentIndex > 0) {
+    currentIndex--;
+    updateImage();
+  }
+});
+
+nextBtn.addEventListener("click", () => {
+  if (currentIndex < images.length - 1) {
+    currentIndex++;
+    updateImage();
+  }
+});
+
+updateImage();

@@ -1,0 +1,26 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+}
+
+.slider-button {
+  padding: 10px 15px;
+  margin: 0 10px;
+  border: none;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+#sliderImage {
+  max-width: 100%;
+  height: auto;
+}
